@@ -259,6 +259,7 @@ public class MainFrame extends BrowserFrame {
         menuBar.addBookmark("Spellcheck Test", "client://tests/spellcheck.html");
         menuBar.addBookmark("LocalStorage Test", "client://tests/localstorage.html");
         menuBar.addBookmark("Transparency Test", "client://tests/transparency.html");
+        menuBar.addBookmark("Open Window Test", "client://tests/open_window_test.html");
         menuBar.addBookmarkSeparator();
         menuBar.addBookmark(
                 "javachromiumembedded", "https://bitbucket.org/chromiumembedded/java-cef");
