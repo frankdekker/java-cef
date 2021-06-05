@@ -10,6 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
 import org.cef.CefApp;
+import org.cef.browser.CefFrame;
 import org.cef.browser.CefBrowser;
 import org.cef.handler.CefLifeSpanHandlerAdapter;
 
@@ -86,6 +87,12 @@ public class BrowserFrame extends JFrame {
 
         browser_.getClient().removeLifeSpanHandler();
         browser_.getClient().addLifeSpanHandler(new CefLifeSpanHandlerAdapter() {
+            @Override 
+            public boolean onBeforePopup(CefBrowser browser, CefFrame frame, String target_url, String target_frame_name, int test) {
+                System.out.println("BrowserFrame.onBeforePopup: " + test);
+                return false;
+            }
+        
             @Override
             public void onAfterCreated(CefBrowser browser) {
                 System.out.println("BrowserFrame.onAfterCreated id=" + browser.getIdentifier());
