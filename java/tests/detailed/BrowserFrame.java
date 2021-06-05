@@ -14,6 +14,7 @@ import org.cef.browser.CefFrame;
 import org.cef.browser.CefBrowser;
 import org.cef.handler.CefLifeSpanHandlerAdapter;
 import org.cef.handler.CefPopupFeatures;
+import org.cef.handler.CefWindowOpenDisposition;
 
 public class BrowserFrame extends JFrame {
     private volatile boolean isClosed_ = false;
@@ -89,9 +90,13 @@ public class BrowserFrame extends JFrame {
         browser_.getClient().removeLifeSpanHandler();
         browser_.getClient().addLifeSpanHandler(new CefLifeSpanHandlerAdapter() {
             @Override 
-            public boolean onBeforePopup(CefBrowser browser, CefFrame frame, CefPopupFeatures popupFeatures, String target_url, String target_frame_name, boolean user_gesture) {
-                System.out.println("BrowserFrame.onBeforePopup: user_gesture " + (user_gesture ? "yes" : "no"));
-                System.out.println("BrowserFrame.onBeforePopup: " + popupFeatures.toString());                
+            public boolean onBeforePopup(CefBrowser browser, CefFrame frame, String target_url, String target_frame_name, 
+                    CefWindowOpenDisposition windowOpenDisposition, CefPopupFeatures popupFeatures, boolean user_gesture) {
+                System.out.println("BrowserFrame.onBeforePopup: target_url: " + target_url);
+                System.out.println("BrowserFrame.onBeforePopup: target_frame_name: " + target_frame_name);
+                System.out.println("BrowserFrame.onBeforePopup: popupFeatures: " + popupFeatures.toString());
+                System.out.println("BrowserFrame.onBeforePopup: windowOpenDisposition: " + windowOpenDisposition);
+                System.out.println("BrowserFrame.onBeforePopup: user_gesture: " + (user_gesture ? "yes" : "no"));
                 return false;
             }
         

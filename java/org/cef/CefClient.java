@@ -37,6 +37,7 @@ import org.cef.handler.CefResourceHandler;
 import org.cef.handler.CefResourceRequestHandler;
 import org.cef.handler.CefScreenInfo;
 import org.cef.handler.CefWindowHandler;
+import org.cef.handler.CefWindowOpenDisposition;
 import org.cef.misc.BoolRef;
 import org.cef.misc.StringRef;
 import org.cef.network.CefRequest;
@@ -518,10 +519,11 @@ public class CefClient extends CefClientHandler
     }
 
     @Override
-    public boolean onBeforePopup(CefBrowser browser, CefFrame frame, CefPopupFeatures popupFeatures, String target_url, String target_frame_name, boolean user_gesture) {
+    public boolean onBeforePopup(CefBrowser browser, CefFrame frame, String target_url, String target_frame_name, 
+            CefWindowOpenDisposition windowOpenDisposition, CefPopupFeatures popupFeatures, boolean user_gesture) {
         if (isDisposed_) return true;
         if (lifeSpanHandler_ != null && browser != null)
-            return lifeSpanHandler_.onBeforePopup(browser, frame, popupFeatures, target_url, target_frame_name, user_gesture);
+            return lifeSpanHandler_.onBeforePopup(browser, frame, target_url, target_frame_name, windowOpenDisposition, popupFeatures, user_gesture);
         return false;
     }
 

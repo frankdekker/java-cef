@@ -63,6 +63,20 @@ bool LifeSpanHandler::OnBeforePopup(CefRefPtr<CefBrowser> browser,
   if (!env)
     return false;
 
+  jobject jtargetDisposition = NULL;
+  switch (target_disposition) {
+    JNI_CASE(env, "org/cef/handler/CefWindowOpenDisposition", WOD_UNKNOWN, jtargetDisposition);
+    JNI_CASE(env, "org/cef/handler/CefWindowOpenDisposition", WOD_CURRENT_TAB, jtargetDisposition);
+    JNI_CASE(env, "org/cef/handler/CefWindowOpenDisposition", WOD_SINGLETON_TAB, jtargetDisposition);
+    JNI_CASE(env, "org/cef/handler/CefWindowOpenDisposition", WOD_NEW_FOREGROUND_TAB, jtargetDisposition);
+    JNI_CASE(env, "org/cef/handler/CefWindowOpenDisposition", WOD_NEW_BACKGROUND_TAB, jtargetDisposition);
+    JNI_CASE(env, "org/cef/handler/CefWindowOpenDisposition", WOD_NEW_POPUP, jtargetDisposition);
+    JNI_CASE(env, "org/cef/handler/CefWindowOpenDisposition", WOD_NEW_WINDOW, jtargetDisposition);
+    JNI_CASE(env, "org/cef/handler/CefWindowOpenDisposition", WOD_SAVE_TO_DISK, jtargetDisposition);
+    JNI_CASE(env, "org/cef/handler/CefWindowOpenDisposition", WOD_OFF_THE_RECORD, jtargetDisposition);
+    JNI_CASE(env, "org/cef/handler/CefWindowOpenDisposition", WOD_IGNORE_ACTION, jtargetDisposition);
+  }
+
   ScopedJNIBrowser jbrowser(env, browser);
   ScopedJNIFrame jframe(env, frame);
   jframe.SetTemporary();
@@ -72,10 +86,13 @@ bool LifeSpanHandler::OnBeforePopup(CefRefPtr<CefBrowser> browser,
   jboolean jreturn = JNI_FALSE;
 
   JNI_CALL_METHOD(env, handle_, "onBeforePopup",
-                  "(Lorg/cef/browser/CefBrowser;Lorg/cef/browser/"
-                  "CefFrame;Lorg/cef/handler/CefPopupFeatures;Ljava/lang/String;Ljava/lang/String;Z)Z",
-                  Boolean, jreturn, jbrowser.get(), jframe.get(), jpopupFeatures.get(),
-                  jtargetUrl.get(), jtargetFrameName.get(), (user_gesture ? JNI_TRUE : JNI_FALSE));
+                  "(Lorg/cef/browser/CefBrowser;Lorg/cef/browser/CefFrame;"
+                  "Ljava/lang/String;Ljava/lang/String;"
+                  "Lorg/cef/handler/CefWindowOpenDisposition;Lorg/cef/handler/CefPopupFeatures;Z)Z",
+                  Boolean, jreturn, jbrowser.get(), jframe.get(), 
+                  jtargetUrl.get(), jtargetFrameName.get(), jtargetDisposition,
+                  jpopupFeatures.get(), (user_gesture ? JNI_TRUE : JNI_FALSE)
+  );
 
   return (jreturn != JNI_FALSE);
 }

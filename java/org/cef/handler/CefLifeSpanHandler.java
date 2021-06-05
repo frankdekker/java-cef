@@ -7,6 +7,7 @@ package org.cef.handler;
 import org.cef.browser.CefBrowser;
 import org.cef.browser.CefFrame;
 import org.cef.handler.CefPopupFeatures;
+import org.cef.handler.CefWindowOpenDisposition;
 
 /**
  * Implement this interface to handle events related to browser life span. The methods of this class
@@ -20,9 +21,13 @@ public interface CefLifeSpanHandler {
      *         method.
      * @param target_url May be empty if none is specified with the request.
      * @param target_frame_name May be empty if none is specified with the request.
+     * @param windowOpenDisposition The behaviour how the popup should be opened.
+     * @param popupFeatures The popup features specified by the popup requester.
+     * @param user_gesture True if the request was initiated by a user gesture.
      * @return True to cancel creation of the popup window or false to proceed.
      */
-    boolean onBeforePopup(CefBrowser browser, CefFrame frame, CefPopupFeatures popupFeatures, String target_url, String target_frame_name, boolean user_gesture);
+    boolean onBeforePopup(CefBrowser browser, CefFrame frame, String target_url, String target_frame_name, 
+            CefWindowOpenDisposition windowOpenDisposition, CefPopupFeatures popupFeatures,  boolean user_gesture);
 
     /**
      * Handle creation of a new browser window.

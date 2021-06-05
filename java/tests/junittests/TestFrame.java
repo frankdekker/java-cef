@@ -22,6 +22,7 @@ import org.cef.handler.CefPopupFeatures;
 import org.cef.handler.CefRequestHandler;
 import org.cef.handler.CefResourceHandler;
 import org.cef.handler.CefResourceRequestHandler;
+import org.cef.handler.CefWindowOpenDisposition;
 import org.cef.misc.BoolRef;
 import org.cef.misc.StringRef;
 import org.cef.network.CefRequest;
@@ -170,7 +171,8 @@ class TestFrame extends JFrame implements CefLifeSpanHandler, CefLoadHandler, Ce
     }
 
     @Override
-    public boolean onBeforePopup(CefBrowser browser, CefFrame frame, CefPopupFeatures popupFeatures, String target_url, String target_frame_name, boolean user_gesture) {
+    public boolean onBeforePopup(CefBrowser browser, CefFrame frame, String target_url, String target_frame_name, 
+            CefWindowOpenDisposition windowOpenDisposition, CefPopupFeatures popupFeatures, boolean user_gesture) {
         return false;
     }
 
