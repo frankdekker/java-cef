@@ -5,9 +5,33 @@
 package org.cef.handler;
 
 public class CefPopupFeatures {
-    public int width;
+    /**
+     * The requested x coordinate for the popup window, -1 if not set.
+     */
+    public int x = -1;
+    /**
+     * The requested y coordinate for the popup window, -1 if not set.
+     */
+    public int y = -1;
+    /**
+     * The requested width of the popup window, -1 if not set.
+     */
+    public int width = -1;
+    /**
+     * The requested height of the popup window, -1 if not set.
+     */
+    public int height = -1;
+    public boolean menuBarVisible = false;
+    public boolean statusBarVisible = false;
+    public boolean toolBarVisible = false;    
+    public boolean scrollBarsVisible = false;
 
-    public void set(int width) {
-        this.width = width;
+    public String toString() {
+        return "x: " + x + ", y: " + y + ", " +
+               "width: " + width + ", height: " + height + ", " +
+               "menubar: " + (menuBarVisible ? "yes" : "no") + ", " +
+               "statusbar: " + (statusBarVisible ? "yes" : "no") + ", " +
+               "toolbar: " + (toolBarVisible ? "yes" : "no") + ", " +
+               "scrollbars: " + (scrollBarsVisible ? "yes" : "no") + ", ";
     }
 }

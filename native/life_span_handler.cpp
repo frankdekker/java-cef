@@ -22,7 +22,14 @@ jobject NewJNIPopupFeatures(JNIEnv* env, const CefPopupFeatures& popupFeatures) 
     return NULL;
   }
 
-  if (SetJNIFieldInt(env, cls, obj, "width", popupFeatures.width)) {
+  if (SetJNIFieldInt(env, cls, obj, "width", popupFeatures.widthSet ? popupFeatures.width : -1)  
+    && SetJNIFieldInt(env, cls, obj, "height", popupFeatures.heightSet ? popupFeatures.height : -1)    
+    && SetJNIFieldInt(env, cls, obj, "x", popupFeatures.xSet ? popupFeatures.x : -1)
+    && SetJNIFieldInt(env, cls, obj, "y", popupFeatures.ySet ? popupFeatures.y : -1)
+    && SetJNIFieldBoolean(env, cls, obj, "menuBarVisible", popupFeatures.menuBarVisible)
+    && SetJNIFieldBoolean(env, cls, obj, "statusBarVisible", popupFeatures.statusBarVisible)
+    && SetJNIFieldBoolean(env, cls, obj, "toolBarVisible", popupFeatures.toolBarVisible)
+  ) {
     return obj.Release();
   }
 
