@@ -8,6 +8,29 @@
 #include "jni_util.h"
 #include "util.h"
 
+namespace {
+
+// Create new org.cef.handler.CefPopupFeatures from CefPopupFeatures
+jobject NewJNIPopupFeatures(JNIEnv* env, const CefPopupFeatures& popupFeatures) {
+  ScopedJNIClass cls(env, "org/cef/handler/CefPopupFeatures");
+  if (!cls) {
+    return NULL;
+  }
+
+  ScopedJNIObjectLocal obj(env, NewJNIObject(env, cls));
+  if (!obj) {
+    return NULL;
+  }
+
+  if (SetJNIFieldInt(env, cls, obj, "width", popupFeatures.width)) {
+    return obj.Release();
+  }
+
+  return NULL;
+}
+
+} // namespace
+
 LifeSpanHandler::LifeSpanHandler(JNIEnv* env, jobject handler)
     : handle_(env, handler) {}
 
@@ -38,6 +61,7 @@ bool LifeSpanHandler::OnBeforePopup(CefRefPtr<CefBrowser> browser,
   jframe.SetTemporary();
   ScopedJNIString jtargetUrl(env, target_url);
   ScopedJNIString jtargetFrameName(env, target_frame_name);
+  ScopedJNIObjectLocal jPopupFeatures(env, NewJNIPopupFeatures(env, popupFeatures));
   jboolean jreturn = JNI_FALSE;
   int test = 123;
 

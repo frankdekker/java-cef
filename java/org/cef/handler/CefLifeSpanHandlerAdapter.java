@@ -6,6 +6,7 @@ package org.cef.handler;
 
 import org.cef.browser.CefBrowser;
 import org.cef.browser.CefFrame;
+import org.cef.handler.CefPopupFeatures;
 
 /**
  * An abstract adapter class for receiving life span events.

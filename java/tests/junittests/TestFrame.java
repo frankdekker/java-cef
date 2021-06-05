@@ -18,6 +18,7 @@ import org.cef.callback.CefRequestCallback;
 import org.cef.handler.CefCookieAccessFilter;
 import org.cef.handler.CefLifeSpanHandler;
 import org.cef.handler.CefLoadHandler;
+import org.cef.handler.CefPopupFeatures;
 import org.cef.handler.CefRequestHandler;
 import org.cef.handler.CefResourceHandler;
 import org.cef.handler.CefResourceRequestHandler;

@@ -13,6 +13,7 @@ import org.cef.CefApp;
 import org.cef.browser.CefFrame;
 import org.cef.browser.CefBrowser;
 import org.cef.handler.CefLifeSpanHandlerAdapter;
+import org.cef.handler.CefPopupFeatures;
 
 public class BrowserFrame extends JFrame {
     private volatile boolean isClosed_ = false;
@@ -89,7 +90,7 @@ public class BrowserFrame extends JFrame {
         browser_.getClient().addLifeSpanHandler(new CefLifeSpanHandlerAdapter() {
             @Override 
             public boolean onBeforePopup(CefBrowser browser, CefFrame frame, String target_url, String target_frame_name, int test) {
-                System.out.println("BrowserFrame.onBeforePopup: " + test);
+                System.out.println("BrowserFrame.onBeforePopup: width " + test);
                 return false;
             }
         

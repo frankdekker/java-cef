@@ -6,6 +6,7 @@ package org.cef.handler;
 
 import org.cef.browser.CefBrowser;
 import org.cef.browser.CefFrame;
+import org.cef.handler.CefPopupFeatures;
 
 /**
  * Implement this interface to handle events related to browser life span. The methods of this class

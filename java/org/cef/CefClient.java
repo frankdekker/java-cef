@@ -30,6 +30,7 @@ import org.cef.handler.CefJSDialogHandler;
 import org.cef.handler.CefKeyboardHandler;
 import org.cef.handler.CefLifeSpanHandler;
 import org.cef.handler.CefLoadHandler;
+import org.cef.handler.CefPopupFeatures;
 import org.cef.handler.CefRenderHandler;
 import org.cef.handler.CefRequestHandler;
 import org.cef.handler.CefResourceHandler;
