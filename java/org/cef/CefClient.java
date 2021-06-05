@@ -521,7 +521,7 @@ public class CefClient extends CefClientHandler
     public boolean onBeforePopup(CefBrowser browser, CefFrame frame, String target_url, String target_frame_name, CefPopupFeatures popupFeatures) {
         if (isDisposed_) return true;
         if (lifeSpanHandler_ != null && browser != null)
-            return lifeSpanHandler_.onBeforePopup(browser, frame, target_url, target_frame_name, CefPopupFeatures popupFeatures);
+            return lifeSpanHandler_.onBeforePopup(browser, frame, target_url, target_frame_name, popupFeatures);
         return false;
     }
 
