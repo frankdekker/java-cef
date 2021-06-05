@@ -89,7 +89,7 @@ public class BrowserFrame extends JFrame {
         browser_.getClient().removeLifeSpanHandler();
         browser_.getClient().addLifeSpanHandler(new CefLifeSpanHandlerAdapter() {
             @Override 
-            public boolean onBeforePopup(CefBrowser browser, CefFrame frame, String target_url, String target_frame_name) {
+            public boolean onBeforePopup(CefBrowser browser, CefFrame frame, String target_url, String target_frame_name, CefPopupFeatures popupFeatures) {
                 System.out.println("BrowserFrame.onBeforePopup: width " + "??");
                 return false;
             }

@@ -170,7 +170,7 @@ class TestFrame extends JFrame implements CefLifeSpanHandler, CefLoadHandler, Ce
     }
 
     @Override
-    public boolean onBeforePopup(CefBrowser browser, CefFrame frame, String target_url, String target_frame_name) {
+    public boolean onBeforePopup(CefBrowser browser, CefFrame frame, String target_url, String target_frame_name, CefPopupFeatures popupFeatures) {
         return false;
     }
 
