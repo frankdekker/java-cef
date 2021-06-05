@@ -15,8 +15,8 @@ import org.cef.handler.CefPopupFeatures;
  */
 public abstract class CefLifeSpanHandlerAdapter implements CefLifeSpanHandler {
     @Override
-    public boolean onBeforePopup(CefBrowser browser, CefFrame frame, String target_url, String target_frame_name, CefPopupFeatures popupFeatures) {
-        System.out.println("PopupFeatures: " + popupFeatures.width);
+    public boolean onBeforePopup(CefBrowser browser, CefFrame frame, String target_url, String target_frame_name, boolean user_gesture) {
+        System.out.println("user gestore: " + (user_gesture ? " yes " : " no"));
         return false;
     }
 

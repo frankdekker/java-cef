@@ -22,7 +22,7 @@ public interface CefLifeSpanHandler {
      * @param target_frame_name May be empty if none is specified with the request.
      * @return True to cancel creation of the popup window or false to proceed.
      */
-    boolean onBeforePopup(CefBrowser browser, CefFrame frame, String target_url, String target_frame_name, CefPopupFeatures popupFeatures);
+    boolean onBeforePopup(CefBrowser browser, CefFrame frame, String target_url, String target_frame_name, boolean user_gesture);
 
     /**
      * Handle creation of a new browser window.
