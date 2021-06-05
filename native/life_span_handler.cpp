@@ -61,13 +61,13 @@ bool LifeSpanHandler::OnBeforePopup(CefRefPtr<CefBrowser> browser,
   jframe.SetTemporary();
   ScopedJNIString jtargetUrl(env, target_url);
   ScopedJNIString jtargetFrameName(env, target_frame_name);
-  //ScopedJNIObjectLocal jPopupFeatures(env, NewJNIPopupFeatures(env, popupFeatures));
+  ScopedJNIObjectLocal jpopupFeatures(env, NewJNIPopupFeatures(env, popupFeatures));
   jboolean jreturn = JNI_FALSE;
 
   JNI_CALL_METHOD(env, handle_, "onBeforePopup",
                   "(Lorg/cef/browser/CefBrowser;Lorg/cef/browser/"
-                  "CefFrame;Ljava/lang/String;Ljava/lang/String;Z)Z",
-                  Boolean, jreturn, jbrowser.get(), jframe.get(),
+                  "CefFrame;Lorg/cef/handler/CefPopupFeatures;Ljava/lang/String;Ljava/lang/String;Z)Z",
+                  Boolean, jreturn, jbrowser.get(), jframe.get(), jpopupFeatures.get(),
                   jtargetUrl.get(), jtargetFrameName.get(), (user_gesture ? JNI_TRUE : JNI_FALSE));
 
   return (jreturn != JNI_FALSE);
